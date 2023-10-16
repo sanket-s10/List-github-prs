@@ -10,6 +10,7 @@ const headers = {
     'X-GitHub-Api-Version': '2022-11-28'
 };
 
+// API to get Pr's limited to page size and ordered by descneding order of created at value. 
 export const getAllPullRequests = (perPage, cursor) => {
     const query = `
       query GetPullRequests($owner: String!, $repo: String!, $perPage: Int!, $cursor: String) {
@@ -43,6 +44,8 @@ export const getAllPullRequests = (perPage, cursor) => {
         });
 
 }
+
+// Service to pull the comments and reviews count using PR number 
 export const fetchPullRequestData = (pullRequestNumber) => {
     const query = `
       {

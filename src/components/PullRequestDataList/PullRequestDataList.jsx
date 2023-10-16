@@ -1,7 +1,16 @@
+/**
+ * This component is responsible to get the pull request data. 
+ * This component is parent to PullRequestData component which renders the actual list. 
+ * From this component we are passing PR related data like title, id and number to 
+ * child component which uses pull request number to get the review and comment count. 
+ * 
+ */
+
 import React, { useState, useEffect } from 'react';
-import { getAllPullRequests, getPullRequests } from '../../api/pullRequestService';
+import { getAllPullRequests } from '../../api/pullRequestService';
 import PullRequestData from '../PullRequestData/PullRequestData';
 import classes from './PullRequestDataList.module.css'
+import { PAGE_SIZE } from '../../constants/utility-constants'; 
 
 const PullRequestDataList = () => {
   const [pullRequests, setPullRequests] = useState([]);
@@ -9,7 +18,8 @@ const PullRequestDataList = () => {
   const [endCursor, setEndCursor] = useState(null);
 
   useEffect(() => {
-    getAllPullRequests(10, null)
+    // GET all the PR's limiting to 10 records per API call
+    getAllPullRequests(PAGE_SIZE, null)
     .then(data => {
       setPullRequests(data.nodes);
       setHasNextPage(data.pageInfo.hasNextPage);
@@ -22,7 +32,7 @@ const PullRequestDataList = () => {
     if (hasNextPage) {
       // Call the API for the next page with the endCursor
       // Update pullRequests, hasNextPage, and endCursor states
-      getAllPullRequests(10, endCursor)
+      getAllPullRequests(PAGE_SIZE, endCursor)
       .then(data => {
         setPullRequests([...pullRequests ,...data.nodes]);
         setHasNextPage(data.pageInfo.hasNextPage);
@@ -35,13 +45,13 @@ const PullRequestDataList = () => {
   return (
     <div className={classes.prDataContainer}>
       <h1>Pull Requests ({pullRequests?.length || 0}) </h1>
-      <ul>
+      <ul className={classes.prULList}>
         {pullRequests.map(pullRequest => {
           return (
             <PullRequestData pullRequest={pullRequest} key={pullRequest.id}/>
         )})}
       </ul>
-      <button onClick={() => loadMore()}>Load More..</button>
+      <button style={{marginTop: 24}} onClick={() => loadMore()}>Load More..</button>
     </div>
   );
 };

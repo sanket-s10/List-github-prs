@@ -1,11 +1,21 @@
+/**
+ * This component is responsible to render the each row that displays the pull 
+ * request data that include title, author and review and comment count. 
+ * 
+ */
+
 import React, { useState, useEffect } from 'react';
 import { fetchPullRequestData } from '../../api/pullRequestService';
 import classes from './PullRequestData.module.css';
 import CommentIcon from '../../assets/comment-icon.svg'
+import PropTypes from 'prop-types';
 
 const PullRequestData = ({ pullRequest }) => {
     const { id, title } = pullRequest;
     const [prDetails, setPrDetails] = useState(null);
+    /**
+     * Responsible to call the graphQL service to get the total comments and review count
+     */
     useEffect(() => {
         if (pullRequest) {
             fetchPullRequestData(pullRequest.number)
@@ -33,8 +43,8 @@ const PullRequestData = ({ pullRequest }) => {
         <li key={id} className={classes.prListContainer}>
             <div className={classes.prListTitleContainer}>
                 <span className={classes.prTitle}> {title} </span>
-                <span className={classes.commentIconContainer}> 
-                    <img className={classes.commentSVG} src={CommentIcon}/>
+                <span className={classes.commentIconContainer}>
+                    <img className={classes.commentSVG} src={CommentIcon} />
                     {prDetails?.reviewCommentsCount || 0}</span>
             </div>
             <span>Opened by <i>{prDetails?.author?.login || ""}</i></span>
@@ -42,4 +52,10 @@ const PullRequestData = ({ pullRequest }) => {
     );
 };
 
+PullRequestData.propTypes = {
+    pullRequest: {
+        id: PropTypes.string,
+        title: PropTypes.string
+    },
+};
 export default PullRequestData;

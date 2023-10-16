@@ -4,3 +4,13 @@
     margin: 0 auto;
     padding: 24px 48px;
 }
+.prULList{
+    padding: 0px;
+    margin: 0px
+}
+@media screen and (max-width: 767px) {
+    .prDataContainer {
+        width: 100%;
+        padding: 24px 12px;
+    }
+  }
