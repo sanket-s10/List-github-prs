@@ -25,3 +25,8 @@ After installation is done, run below command to start the application
 npm start 
 
 After this command, the application will be launched in default browser. 
+
+## Screenshot 
+
+![ app screenshot 1](https://github.com/sanket-s10/List-github-prs/blob/653f44e77db3e117aa08ac0aff717c8f995a5a4c/Screenshot%202023-10-17%20at%2004.13.26.png)
+![ app screenshot 2](https://github.com/sanket-s10/List-github-prs/blob/653f44e77db3e117aa08ac0aff717c8f995a5a4c/Screenshot%202023-10-17%20at%2004.14.00.png)
