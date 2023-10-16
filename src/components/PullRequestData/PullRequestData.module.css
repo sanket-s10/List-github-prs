@@ -1,0 +1,27 @@
+.prListContainer {
+    list-style: none;
+    padding: 8px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid #d0d0d0;
+}
+.prListTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+.commentIconContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.commentSVG{
+    width: 20px;
+    height: auto;
+    margin-right: 4px;
+}
+.prTitle{
+    font-weight: 700;
+}
